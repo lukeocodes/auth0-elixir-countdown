@@ -3,6 +3,25 @@
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
 </div>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for event <- @events do %>
+    <tr>
+      <td><%= event.title %></td>
+      <td><%= event.due %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
 <div class="row marketing">
   <div class="col-lg-6">
     <h4>Resources</h4>
