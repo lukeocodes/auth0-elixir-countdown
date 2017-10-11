@@ -5,7 +5,6 @@ defmodule Countdown.Events do
 
   import Ecto.Query, warn: false
   alias Countdown.Repo
-
   alias Countdown.Events.Event
 
   @doc """
@@ -19,6 +18,21 @@ defmodule Countdown.Events do
   """
   def list_events do
     Repo.all(Event)
+  end
+
+  @doc """
+  Returns the list of future events.
+
+  ## Examples
+
+      iex> list_future_events()
+      [%Event{}, ...]
+
+  """
+  def list_future_events do
+    query = from e in Countdown.Events.Event,
+      where: e.due >= ^DateTime.utc_now
+    Repo.all(query)
   end
 
   @doc """
