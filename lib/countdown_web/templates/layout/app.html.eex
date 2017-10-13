@@ -16,10 +16,17 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+<%= if cookies(@conn, "jwt") do %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/events">Events</a></li>
+            <li class="active"><a href="/logout">Logout</a></li>
+<% else %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+<% end %>
           </ul>
         </nav>
-        <span class="logo"></span>
+        <span class="auth0-logo"></span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

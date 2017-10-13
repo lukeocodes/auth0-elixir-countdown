@@ -1,1 +1,10 @@
 /* This file is for your main application css. */
+
+.auth0-logo {
+    width: 150px;
+    height: 60px;
+    display: inline-block;
+    background-image: url(https://ras-blogdb.restdb.io/media/57cfb4044c66b17c00000880);
+    background-repeat: no-repeat;
+    background-size: 150px;
+}
