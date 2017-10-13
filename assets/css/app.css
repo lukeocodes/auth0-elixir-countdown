@@ -8,3 +8,11 @@
     background-repeat: no-repeat;
     background-size: 150px;
 }
+
+.jumbotron .flip-clock-wrapper {
+    text-align: center;
+    position: relative;
+    width: auto;
+    margin-top: 8em;
+    display: inline-block;
+}

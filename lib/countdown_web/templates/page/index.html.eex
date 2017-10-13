@@ -1,18 +1,20 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Due</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
 <%= for event <- @events do %>
-    <tr>
-      <td><%= event.title %></td>
-      <td><%= event.due %></td>
-    </tr>
+    <div class="jumbotron">
+      <span class="h1">Days until <%= event.title %></span>
+      <p class="text-center"><span class="countdownClock" data-due="<%= event.due %>"></span></p>
+    </div>
 <% end %>
-  </tbody>
-</table>
+<script>
+$(document).ready(function() {
+    $('.countdownClock').each(function(i, el) {
+      var today = new Date();
+      var due = new Date($(el).data('due'));
+
+      $(el).FlipClock((due/1000) - (today/1000), {
+          clockFace: 'DailyCounter',
+      		countdown: true,
+      		showSeconds: false
+      });
+    });
+});
+</script>
