@@ -19,7 +19,7 @@ defmodule CountdownWeb.AuthController do
         |> redirect(to: redirect_uri)
       {:error} -> conn
         |> redirect(to: "/")
-      {:error, errrors, 400} -> conn
+      {:error, errors, 400} -> conn
         |> redirect(to: "/")
     end
   end
