@@ -3,6 +3,19 @@ defmodule CountdownWeb.EventController do
 
   alias Countdown.Events
   alias Countdown.Events.Event
+  alias Auth0Ex.Authentication
+
+  plug :secure
+
+  defp secure(conn, _params) do
+    tokenInfo = Authentication.tokeninfo(conn.cookies["jwt"])
+
+    case tokenInfo do
+      {:ok, event} -> conn
+      {:error, errors, 400} -> conn
+        |> redirect(to: "/login?redirect=/events")
+    end
+  end
 
   def index(conn, _params) do
     events = Events.list_events()
