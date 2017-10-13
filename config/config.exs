@@ -25,3 +25,10 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+# Configures Auth0Ex
+config :auth0_ex,
+  domain: System.get_env("AUTH0_DOMAIN"),
+  mgmt_client_id: System.get_env("AUTH0_MGMT_CLIENT_ID"),
+  mgmt_client_secret: System.get_env("AUTH0_MGMT_CLIENT_SECRET"),
+  http_opts: []
