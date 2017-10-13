@@ -5,7 +5,7 @@ To start your Phoenix server:
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+  * Start Phoenix endpoint with `AUTH0_DOMAIN=<your domain> AUTH0_MGMT_CLIENT_ID=<your client id> AUTH0_MGMT_CLIENT_SECRET=<your secret> mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
@@ -18,3 +18,4 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+  * Auth0 for authentication: https://www.auth0.com
