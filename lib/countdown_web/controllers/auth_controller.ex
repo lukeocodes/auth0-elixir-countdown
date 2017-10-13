@@ -34,7 +34,7 @@ defmodule CountdownWeb.AuthController do
     redirect_uri = if conn.params["redirect"], do: conn.params["redirect"], else: "/"
 
     conn
-      |> redirect(external: "https://" <> Application.get_env(:auth0_ex, :domain) <> "/login?client=7XvJWFYYk7lRsgdS45vDukqUkopkcPhD&redirect_uri=" <> Helpers.url(conn) <> "/auth?redirect=" <> redirect_uri)
+      |> redirect(external: "https://" <> Application.get_env(:auth0_ex, :domain) <> "/login?client=" <> Application.get_env(:auth0_ex, :mgmt_client_id) <> "&redirect_uri=" <> Helpers.url(conn) <> "/auth?redirect=" <> redirect_uri)
       |> halt
   end
 end
