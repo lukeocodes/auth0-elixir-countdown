@@ -17,6 +17,10 @@ defmodule CountdownWeb.Router do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
 
+    get "/auth", AuthController, :index
+    get "/login", AuthController, :login
+    get "/logout", AuthController, :logout
+
     resources "/events", EventController
   end
 end
