@@ -5,6 +5,6 @@ defmodule CountdownWeb.PageController do
 
   def index(conn, _params) do
     events = Events.list_future_events()
-    render(conn, "index.html", events: events)
+    render conn, "index.html", events: events
   end
 end
