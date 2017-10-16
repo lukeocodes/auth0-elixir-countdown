@@ -2,6 +2,20 @@
 
 ## Preparation
 
+![Auth0 hosted login screen](https://cdn2.auth0.com/blog/angular-aside/angular-aside-login.jpg)
+
+### Sign Up for Auth0
+
+You'll need an [Auth0](https://auth0.com) account to manage authentication. You can sign up for a [free account here](javascript:signup\(\)). Next, set up an Auth0 Client and API so Auth0 can interface with your app and API.
+
+### Set Up a Client App
+
+1. Go to your [**Auth0 Dashboard**](https://manage.auth0.com/#/) and click the "[create a new client](https://manage.auth0.com/#/clients/create)" button. 
+2. Name your new app and select "Regular Web Applications". 
+3. In the **Settings** for your new Auth0 client app, add `http://0.0.0.0:4000/auth` to the **Allowed Callback URLs** and `http://0.0.0.0:4000/auth` to the **Allowed Origins (CORS)**. *You might need to add `http://localhost:4000/auth` depending on how your version of Phoenix renders the routes*.
+4. Scroll down to the bottom of the **Settings** section and click "Show Advanced Settings". Choose the **OAuth** tab and change the **JsonWebToken Signature Algorithm** to `RS256`.
+5. If you'd like, you can [set up some social connections](https://manage.auth0.com/#/connections/social). You can then enable them for your app in the **Client** options under the **Connections** tab. The example shown in the screenshot above utilizes username/password database, Facebook, Google, and Twitter.
+
 ### Elixir 1.4 or later
 
 Phoenix is written in Elixir. We won’t get far in a Phoenix app without it! The Elixir site maintains a great [Installation Page](https://elixir-lang.org/install.html) to help.
@@ -30,6 +44,11 @@ To check that we are on Elixir 1.4 and Erlang 18 or later, run:
     Erlang/OTP 19 [erts-8.3] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir 1.4.2
+    
+### PostgreSQL
+PostgreSQL is a relational database server. The PostgreSQL wiki has [nstallation guides](https://wiki.postgresql.org/wiki/Detailed_installation_guides) to help get set up.
+
+Postgrex is a direct Phoenix dependency, and it will be automatically installed along with the rest of our dependencies as we start our app.
 
 ## To start your Phoenix server:
 
