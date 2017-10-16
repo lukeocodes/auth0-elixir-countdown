@@ -2,8 +2,6 @@
 
 ## Preparation
 
-![Auth0 hosted login screen](https://cdn2.auth0.com/blog/angular-aside/angular-aside-login.jpg)
-
 ### Sign Up for Auth0
 
 You'll need an [Auth0](https://auth0.com) account to manage authentication. You can sign up for a [free account here](javascript:signup\(\)). Next, set up an Auth0 Client and API so Auth0 can interface with your app and API.
@@ -15,6 +13,8 @@ You'll need an [Auth0](https://auth0.com) account to manage authentication. You 
 3. In the **Settings** for your new Auth0 client app, add `http://0.0.0.0:4000/auth` to the **Allowed Callback URLs** and `http://0.0.0.0:4000/auth` to the **Allowed Origins (CORS)**. *You might need to add `http://localhost:4000/auth` depending on how your version of Phoenix renders the routes*.
 4. Scroll down to the bottom of the **Settings** section and click "Show Advanced Settings". Choose the **OAuth** tab and change the **JsonWebToken Signature Algorithm** to `RS256`.
 5. If you'd like, you can [set up some social connections](https://manage.auth0.com/#/connections/social). You can then enable them for your app in the **Client** options under the **Connections** tab. The example shown in the screenshot above utilizes username/password database, Facebook, Google, and Twitter.
+
+![Auth0 hosted login screen](https://cdn2.auth0.com/blog/angular-aside/angular-aside-login.jpg)
 
 ### Elixir 1.4 or later
 
@@ -53,7 +53,7 @@ Postgrex is a direct Phoenix dependency, and it will be automatically installed 
 ## To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`. ***Postgres is required before Ecto commands can be run.***
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `AUTH0_DOMAIN=<your domain> AUTH0_MGMT_CLIENT_ID=<your client id> AUTH0_MGMT_CLIENT_SECRET=<your secret> mix phx.server`
 
