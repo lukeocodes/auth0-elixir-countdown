@@ -20,34 +20,46 @@ You'll need an [Auth0](https://auth0.com) account to manage authentication. You 
 
 ### Install Elixir
 
-Follow their install guide here: http://elixir-lang.org/install.html
+Follow the Elixir install guide here: http://elixir-lang.org/install.html
 
-Install the Hex package manager: https://hexdocs.pm/mix/1.0.5/Mix.Tasks.Local.Hex.html
+Next we run a `mix` command to install the Hex package manager. Mix is a build tool that provides tasks for creating, compiling, and testing Elixir projects, managing its dependencies, and more. If you know Ruby well, Mix is Rake, Bundler, and RubyGems combined.
 
+Now use mix to install hex: https://hexdocs.pm/mix/1.0.5/Mix.Tasks.Local.Hex.html
+
+```bash
     $ mix local.hex
+```
 
 ### Install Phoenix
 
 Phoenix needs at least Elixir 1.4 and Erlang 18 or later, run:
 
+```bash
     $ elixir -v
     Erlang/OTP 19 [erts-8.3] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
     Elixir 1.4.2
+```
+
+Now we can install Phoenix v1.3.0:
+
+```bash
+    $ mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new-1.3.0.ez
+```
 
 ### PostgreSQL
 
 Follow the instructions here: http://postgresguide.com/setup/install.html
 
-Setup your database config by editing `config/dev.exs` (and `config/{env}.exs` where appropriate), and edit the username and password near the bottom of the file. (They will both be set to “postgres” by default.)
+Set up your database config by editing `config/dev.exs` (and `config/{env}.exs` where appropriate), and edit the username and password near the bottom of the file. (They will both be set to “postgres” by default.)
 
 ```erlang
     ...
     config :countdown, Countdown.Repo,
       adapter: Ecto.Adapters.Postgres,
-      username: "auth0",
-      password: "phoenixelixir",
-      database: "countdown",
+      username: "postgres",
+      password: "postgres",
+      database: "elixir",
     ...
 ```
 
