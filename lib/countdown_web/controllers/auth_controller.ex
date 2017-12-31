@@ -1,40 +1,36 @@
 defmodule CountdownWeb.AuthController do
   use CountdownWeb, :controller
-  alias Auth0Ex.Authentication
   alias CountdownWeb.Router.Helpers
 
-  def index(conn, _params) do
-    authCode = Authentication.Token.auth_code(
-      Application.get_env(:auth0_ex, :mgmt_client_id),
-      Application.get_env(:auth0_ex, :mgmt_client_secret),
-      conn.query_params["code"],
-      Helpers.url(conn) <> "/auth"
-    )
+  plug Ueberauth
 
-    redirect_uri = if conn.params["redirect"], do: conn.params["redirect"], else: "/"
-
-    case authCode do
-      {:ok, response} -> conn
-        |> put_resp_cookie("jwt", response["id_token"])
-        |> redirect(to: redirect_uri)
-      {:error} -> conn
-        |> redirect(to: "/")
-      {:error, errors, 400} -> conn
-        |> redirect(to: "/")
-    end
-  end
+  alias Ueberauth.Strategy.Helpers
 
   def logout(conn, _params) do
     conn
-      |> delete_resp_cookie("jwt")
-      |> redirect(to: "/")
+    |> put_flash(:info, "You have been logged out!")
+    |> configure_session(drop: true)
+    |> redirect(to: "/")
   end
 
-  def login(conn, _params) do
-    redirect_uri = if conn.params["redirect"], do: conn.params["redirect"], else: "/"
-
+  def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
     conn
-      |> redirect(external: "https://" <> Application.get_env(:auth0_ex, :domain) <> "/login?client=" <> Application.get_env(:auth0_ex, :mgmt_client_id) <> "&redirect_uri=" <> Helpers.url(conn) <> "/auth?redirect=" <> redirect_uri)
-      |> halt
+    |> put_flash(:error, "Failed to authenticate.")
+    |> redirect(to: "/")
+  end
+
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    case UserFromAuth.find_or_create(auth) do
+      {:ok, user} ->
+        {:ok, userInfo} = Auth0Ex.Management.User.get(user[:id])
+        conn
+        |> put_flash(:info, "Successfully authenticated as " <> userInfo["email"] <> ".")
+        |> put_session(:current_user, user)
+        |> redirect(to: "/")
+      {:error, reason} ->
+        conn
+        |> put_flash(:error, reason)
+        |> redirect(to: "/")
+    end
   end
 end
