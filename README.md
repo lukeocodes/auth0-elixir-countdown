@@ -6,15 +6,25 @@
 
 You'll need an [Auth0](https://auth0.com) account to manage authentication. You can sign up for a [free account here](javascript:signup\(\)). Next, set up an Auth0 Client and API so Auth0 can interface with your app and API.
 
-#### Set Up a Client App
+#### Set Up a Client App for Login
 
-1. Go to your [**Auth0 Dashboard**](https://manage.auth0.com/#/) and click the "[create a new client](https://manage.auth0.com/#/clients/create)" button. 
-2. Name your new app and select "Regular Web Applications". 
-3. In the **Settings** for your new Auth0 client app, add `http://0.0.0.0:4000/auth` to the **Allowed Callback URLs** and `http://0.0.0.0:4000/auth` to the **Allowed Origins (CORS)**. *You might need to add `http://localhost:4000/auth` depending on how your version of Phoenix renders the routes*.
+1. Go to your [**Auth0 Dashboard**](https://manage.auth0.com/#/) and click the "[create a new client](https://manage.auth0.com/#/clients/create)" button.
+2. Name your new app and select "Regular Web Applications".
+3. In the **Settings** for your new Auth0 client app, add `http://0.0.0.0:4000/auth/auth0/callback` to the **Allowed Callback URLs** and `http://0.0.0.0:4000/auth/auth0/callback` to the **Allowed Origins (CORS)**. *You might need to add `http://localhost:4000/auth` depending on how your version of Phoenix renders the routes*.
 4. Scroll down to the bottom of the **Settings** section and click "Show Advanced Settings". Choose the **OAuth** tab and change the **JsonWebToken Signature Algorithm** to `RS256`.
 5. If you'd like, you can [set up some social connections](https://manage.auth0.com/#/connections/social). You can then enable them for your app in the **Client** options under the **Connections** tab. The example shown in the screenshot above utilizes username/password database, Facebook, Google, and Twitter.
 
 ![Auth0 hosted login screen](https://cdn2.auth0.com/blog/angular-aside/angular-aside-login.jpg)
+
+#### Set Up a Client App for Management API Access
+
+1. Go to your [Auth0 Dashboard](https://manage.auth0.com/#/) and click the "[create a new client](https://manage.auth0.com/#/clients/create)" button.
+2. Name your new app and select "Non Interactive Clients".
+3. Click "[APIs](https://manage.auth0.com/#/apis)" in the left navigation.
+4. Create a new API with "Signing Algorithm" set to `RS256`.
+5. Click on "Non Interactive Clients" and choose "authorize" on the client you created in this section.
+6. Here you can choose which rights your api has. For our test App only "read:users" is needed.
+
 
 ## Getting ready
 
@@ -76,7 +86,7 @@ If you choose to use another database provider, make sure you edit the configura
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`.
   * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `AUTH0_DOMAIN=<your domain> AUTH0_MGMT_CLIENT_ID=<your client id> AUTH0_MGMT_CLIENT_SECRET=<your secret> mix phx.server`
+  * Start Phoenix endpoint with `AUTH0_DOMAIN=<your domain> AUTH0_CLIENT_ID=<your client id first section> AUTH0_MGMT_CLIENT_SECRET=<your secret first section>  AUTH0_MGMT_CLIENT_ID=<your client id second section> AUTH0_MGMT_CLIENT_SECRET=<your secret second section> mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
