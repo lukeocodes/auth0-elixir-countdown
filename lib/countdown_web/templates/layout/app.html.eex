@@ -19,14 +19,14 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-<%= if cookies(@conn, "jwt") do %>
+            <%= if @current_user do %>
             <li><a href="/">Home</a></li>
             <li><a href="/events">Events</a></li>
             <li class="active"><a href="/logout">Logout</a></li>
-<% else %>
+            <% else %>
             <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-<% end %>
+            <li><a href="/auth/auth0">Login</a></li>
+            <% end %>
           </ul>
         </nav>
         <span class="auth0-logo"></span>

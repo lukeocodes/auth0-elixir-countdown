@@ -8,12 +8,13 @@ defmodule CountdownWeb.EventController do
   plug :secure
 
   defp secure(conn, _params) do
-    tokenInfo = Authentication.tokeninfo(conn.cookies["jwt"])
-
-    case tokenInfo do
-      {:ok, event} -> conn
-      {:error, errors, 400} -> conn
-        |> redirect(to: "/login?redirect=/events")
+    user = get_session(conn, :current_user)
+    case user do
+     nil ->
+         conn |> redirect(to: "/auth/auth0") |> halt
+     _ ->
+       conn
+       |> assign(:current_user, user)
     end
   end
 
