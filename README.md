@@ -10,7 +10,7 @@ You'll need an [Auth0](https://auth0.com) account to manage authentication. You 
 
 1. Go to your [**Auth0 Dashboard**](https://manage.auth0.com/#/) and click the "[create a new client](https://manage.auth0.com/#/clients/create)" button. 
 2. Name your new app and select "Regular Web Applications". 
-3. In the **Settings** for your new Auth0 client app, add `http://0.0.0.0:4000/auth/auth0/callback` to the **Allowed Callback URLs** and `http://0.0.0.0:4000` to the **Allowed Origins (CORS)**.
+3. In the **Settings** for your new Auth0 client app, add `http://0.0.0.0:4000/auth/auth0/callback` to the **Allowed Callback URLs**.
 4. Click the "Save Changes" button.
 5. If you'd like, you can [set up some social connections](https://manage.auth0.com/#/connections/social). You can then enable them for your app in the **Client** options under the **Connections** tab. The example shown in the screenshot above utilizes username/password database, Facebook, Google, and Twitter.
 
