@@ -3,7 +3,6 @@ defmodule CountdownWeb.EventController do
 
   alias Countdown.Events
   alias Countdown.Events.Event
-  alias Auth0Ex.Authentication
 
   plug :secure
 

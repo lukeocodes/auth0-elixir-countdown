@@ -22,9 +22,8 @@ defmodule CountdownWeb.AuthController do
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case UserFromAuth.find_or_create(auth) do
       {:ok, user} ->
-        {:ok, userInfo} = Auth0Ex.Management.User.get(user[:id])
         conn
-        |> put_flash(:info, "Successfully authenticated as " <> userInfo["email"] <> ".")
+        |> put_flash(:info, "Successfully authenticated as " <> user.name <> ".")
         |> put_session(:current_user, user)
         |> redirect(to: "/")
       {:error, reason} ->

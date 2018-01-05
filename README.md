@@ -16,19 +16,6 @@ You'll need an [Auth0](https://auth0.com) account to manage authentication. You 
 
 > Note: On the **OAuth** tab of **Advanced Settings** (at the bottom of the **Settings** section) you can see the **JsonWebToken Signature Algorithm** is set to `RS256`. This is now the default, [read more about RS256 vs HS256 here](https://community.auth0.com/questions/6942/jwt-signing-algorithms-rs256-vs-hs256).
 
-### Set Up Client Management API
-
-1. Go to your [**Auth0 Dashboard**](https://manage.auth0.com/#/) and click the "[APIs](https://manage.auth0.com/#/apis)" link in the menu. 
-2. Select the "Auth0 Management API" that comes with your new free account.
-3. Select the "Non Interactive Clients" tab.
-4. Toggle "Unauthorized" to "Authorized" for the client you have just created above.
-
-   ![Authorize client](https://cdn.auth0.com/blog/elixir-phoenix-app/authorize-app.png)
-
-5. Now enable the `read:users` scope that is required for this project.
-
-   ![Read permission](https://cdn.auth0.com/blog/elixir-phoenix-app/enable-scope.png)
-
 ## Getting ready
 
 ### Install Elixir
@@ -95,8 +82,6 @@ If you choose to use another database provider, make sure you edit the configura
     $ AUTH0_DOMAIN=<Your domain> \
       AUTH0_CLIENT_ID=<Your client ID> \
       AUTH0_CLIENT_SECRET=<Your client secret> \
-      AUTH0_MGMT_CLIENT_ID=<Your management API client ID> \
-      AUTH0_MGMT_CLIENT_SECRET=<Your management API client secret> \
       mix phx.server
     ```
 

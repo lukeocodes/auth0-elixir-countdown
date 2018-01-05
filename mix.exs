@@ -20,7 +20,7 @@ defmodule Countdown.Mixfile do
   def application do
     [
       mod: {Countdown.Application, []},
-      extra_applications: [:ueberauth, :ueberauth_auth0, :auth0_ex, :logger, :runtime_tools]
+      extra_applications: [:ueberauth, :ueberauth_auth0, :logger, :runtime_tools]
     ]
   end
 
@@ -42,8 +42,7 @@ defmodule Countdown.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
-      {:ueberauth_auth0, "~> 0.3"},
-      {:auth0_ex, "~> 0.2"}
+      {:ueberauth_auth0, "~> 0.3"}
     ]
   end
 
